@@ -29,8 +29,8 @@ After editing `content.js` or `images/`, you can refresh that built-in copy with
 
 ## Before going live
 - `brand.email`, `brand.instagram` and `brand.linkedin` in `content.js`.
-- The 4 **Selected collabs** are examples. Replace them with your real ones.
-- Swap the illustrated placeholder images in `images/` for real photos (hero: landscape, about 2000px wide).
+- The 4 collabs are **ideas**, labelled "Collabs we'd love to make". When you've done real ones, replace them and change the label to "Selected collabs".
+- The photos are free Unsplash stock. Swap in your own (your suppers, your collabs) as soon as you have them.
 - **Contact form:** by default it opens the visitor's email app addressed to you. For direct delivery, create a free form at formspree.io and paste its URL into `brand.formEndpoint`.
 
 ## Hosting
