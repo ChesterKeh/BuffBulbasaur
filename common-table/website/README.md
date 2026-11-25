@@ -23,6 +23,10 @@ Edits are autosaved in your browser until you download them, so you won't lose t
 
 **Option 2: edit `content.js` directly** in any text editor. Every section is labelled.
 
+## Opening index.html on its own
+`index.html` carries a built-in copy of the content and images, so it still shows everything when it's opened alone (e.g. in a chat preview). When `content.js` sits next to it, `content.js` always wins.
+After editing `content.js` or `images/`, you can refresh that built-in copy with `node build.js` (optional).
+
 ## Before going live
 - `brand.email`, `brand.instagram` and `brand.linkedin` in `content.js`.
 - The 4 **Selected collabs** are examples. Replace them with your real ones.
