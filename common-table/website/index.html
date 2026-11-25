@@ -5,497 +5,497 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Common Table — Partnerships, made warmly</title>
 <meta name="description" content="A Singapore partnership studio connecting homegrown brands, cafés and startups to build collaborations that work.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.12.0/tachyons.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* Tachyons does the layout, spacing and type scale. This block only adds what
+   Tachyons doesn't have: the brand palette, fonts, hard shadows and the
+   scroll-driven "day passing" colours. */
 :root{
-  --cream:#fbf4ea; --paper:#fffaf3; --ink:#3a2a22; --muted:#7a6558;
-  --terracotta:#c8643b; --terracotta-deep:#a94e2a; --honey:#e8a83e;
-  --sage:#8fa58a; --blush:#f2d6c4; --line:#ead9c8;
-  --shadow:0 10px 30px -12px rgba(120,64,30,.25);
-  --radius:22px;
+  --bg:#FBF1E3; --fg:#2B1D16;            /* updated by JS as you scroll */
+  --paper:#FFF8EE; --ink:#2B1D16;
+  --terra:#C8572F; --honey:#F2A93B; --sage:#8DA47E; --blush:#F4CDB6;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --cream:#211813; --paper:#2a1f19; --ink:#f6e8da; --muted:#c3ab99;
-    --terracotta:#e07a4e; --terracotta-deep:#f09065; --honey:#f0b955;
-    --sage:#a3b99e; --blush:#4a3227; --line:#3d2d24;
-    --shadow:0 10px 30px -12px rgba(0,0,0,.6);
-  }
-}
-:root[data-theme="dark"]{
-  --cream:#211813; --paper:#2a1f19; --ink:#f6e8da; --muted:#c3ab99;
-  --terracotta:#e07a4e; --terracotta-deep:#f09065; --honey:#f0b955;
-  --sage:#a3b99e; --blush:#4a3227; --line:#3d2d24;
-  --shadow:0 10px 30px -12px rgba(0,0,0,.6);
-}
-*{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden}
-h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.15;margin:0 0 .5em}
-h1{font-size:clamp(2.4rem,6vw,4.4rem)}
-h2{font-size:clamp(1.9rem,4vw,2.8rem)}
-h3{font-size:1.3rem}
-p{margin:0 0 1em}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-section{padding:96px 0}
-.eyebrow{display:inline-block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);font-weight:700;margin-bottom:14px}
-.lead{font-size:1.15rem;color:var(--muted);max-width:620px}
+body{background:var(--bg);color:var(--fg);transition:background-color .2s linear,color .2s linear;overflow-x:hidden}
+.serif{font-family:"Fraunces",Georgia,serif}
+.mono{font-family:"Space Mono",ui-monospace,monospace}
+.b--fg{border-color:var(--fg)}
+.b--ink{border-color:var(--ink)}
+.bg-paper{background:var(--paper)} .ink{color:var(--ink)}
+.bg-terra{background:var(--terra)} .terra{color:var(--terra)}
+.bg-honey{background:var(--honey)} .bg-sage{background:var(--sage)} .bg-blush{background:var(--blush)}
+.bg-ink{background:var(--ink)} .paper{color:var(--paper)}
+.hard{box-shadow:6px 6px 0 var(--fg)}
+.hard-ink{box-shadow:6px 6px 0 var(--ink)}
+.lh-tight{line-height:1.02}
+.tracked-snug{letter-spacing:-.02em}
 
-/* grain + floating blobs */
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.45;z-index:0;animation:drift 18s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate(40px,-30px) scale(1.08)}}
+/* buttons: rectangles that press down */
+.press{transition:transform .12s ease,box-shadow .12s ease;box-shadow:5px 5px 0 var(--ink)}
+.press:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.press:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
 
-/* nav */
-nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--cream) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
-nav.scrolled{border-color:var(--line)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-family:"Fraunces",serif;font-weight:600;font-size:1.25rem;text-decoration:none}
-.logo svg{transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
-.logo:hover svg{transform:rotate(180deg)}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;position:relative}
-.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:var(--terracotta);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.nav-links a:not(.btn):hover::after{transform:scaleX(1)}
-@media (max-width:760px){.nav-links a:not(.btn){display:none}}
+/* cards lift and tilt a touch */
+.lift{transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s}
+.lift:hover{transform:translate(-4px,-4px) rotate(-.5deg);box-shadow:10px 10px 0 var(--fg)}
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;border:0;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
-.btn-primary{background:var(--terracotta);color:#fff8f0;box-shadow:0 8px 20px -8px var(--terracotta)}
-.btn-primary:hover{background:var(--terracotta-deep);transform:translateY(-2px);box-shadow:0 14px 26px -10px var(--terracotta)}
-.btn-ghost{background:transparent;border:2px solid var(--ink);color:var(--ink)}
-.btn-ghost:hover{background:var(--ink);color:var(--cream)}
-.btn .arrow{transition:transform .2s}
-.btn:hover .arrow{transform:translateX(4px)}
+/* fixed clock (the "depth meter") */
+#clock{position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:20;width:120px}
+#clock .rail{position:absolute;left:5px;top:-34vh;height:68vh;border-left:2px dashed currentColor;opacity:.35}
+#clock .dot{position:absolute;left:0;width:12px;height:12px;border-radius:50%;background:var(--terra);border:2px solid currentColor;transform:translateY(-50%)}
+#clockPill{position:fixed;top:12px;right:12px;z-index:30}
+@media (min-width:60em){#clockPill{display:none}}
+@media (max-width:59.99em){#clock{display:none}}
 
-/* hero */
-.hero{position:relative;padding:70px 0 90px;overflow:hidden}
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
-.hero h1 em{font-style:italic;color:var(--terracotta)}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-.hero-art{position:relative;aspect-ratio:1;max-width:440px;width:100%;justify-self:center}
-.hero-art svg{width:100%;height:100%;overflow:visible}
-.orb{transform-box:fill-box;transform-origin:center}
-.orb-a{animation:meetA 6s ease-in-out infinite}
-.orb-b{animation:meetB 6s ease-in-out infinite}
-@keyframes meetA{0%,100%{transform:translateX(-40px)}50%{transform:translateX(22px)}}
-@keyframes meetB{0%,100%{transform:translateX(40px)}50%{transform:translateX(-22px)}}
-.spark{animation:spark 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-@keyframes spark{0%,35%,65%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
-.orbit{animation:spin 30s linear infinite;transform-origin:220px 220px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.chip-float{position:absolute;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.85rem;font-weight:600;box-shadow:var(--shadow);animation:bob 5s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-10px)}}
+/* sun that sets and turns into the moon */
+#sun{position:fixed;right:6vw;width:110px;height:110px;border-radius:50%;z-index:0;pointer-events:none;
+  box-shadow:0 0 80px 20px rgba(242,169,59,.45);transition:background-color .2s linear}
+@media (max-width:59.99em){#sun{width:70px;height:70px;right:-20px;opacity:.6}}
+main,header,footer,nav{position:relative;z-index:1}
 
 /* marquee */
-.marquee{border-block:1px solid var(--line);background:var(--paper);overflow:hidden;padding:18px 0}
-.marquee-track{display:flex;gap:48px;width:max-content;animation:scroll 40s linear infinite;font-family:"Fraunces",serif;font-size:1.2rem;color:var(--muted)}
+.marquee-track{display:flex;width:max-content;animation:scroll 38s linear infinite}
 .marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-track span::after{content:"✦";margin-left:48px;color:var(--honey)}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
-/* lanes */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
-@media (max-width:860px){.cards{grid-template-columns:1fr}}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s}
-.card::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--c,var(--blush));top:-70px;right:-70px;opacity:.5;transition:transform .5s}
-.card:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:var(--shadow)}
-.card:hover::before{transform:scale(1.6)}
-.card>*{position:relative}
-.card .icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--cream);font-size:1.5rem;margin-bottom:18px}
-.card ul{padding-left:18px;margin:0;color:var(--muted)}
+/* matcher chips (radio buttons) */
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;transition:transform .12s,background .12s}
+.chip span:hover{transform:translateY(-2px)}
+.chip input:checked+span{background:var(--honey);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.chip input:focus-visible+span{outline:3px solid var(--terra);outline-offset:2px}
+.pop{animation:pop .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}}
 
-/* matcher */
-.matcher{background:var(--ink);color:var(--cream);border-radius:32px;padding:56px;position:relative;overflow:hidden}
-:root[data-theme="dark"] .matcher{background:#3a2a22}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .matcher{background:#3a2a22}}
-@media (max-width:640px){.matcher{padding:32px 22px}}
-.matcher h2{color:#fff4e8}
-.matcher .lead{color:#e6cfbd}
-.picker{margin-top:26px}
-.picker-label{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--honey);font-weight:700;margin-bottom:10px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
-.chips input{position:absolute;opacity:0;pointer-events:none}
-.chips label{padding:10px 18px;border-radius:999px;border:1.5px solid #6d5546;cursor:pointer;color:#f3e2d3;transition:all .2s;user-select:none}
-.chips label:hover{border-color:var(--honey);transform:translateY(-2px)}
-.chips input:checked+label{background:var(--honey);border-color:var(--honey);color:#3a2a22;font-weight:700}
-.chips input:focus-visible+label{outline:2px solid #fff;outline-offset:2px}
-.result{margin-top:10px;background:#fff8ef;color:#3a2a22;border-radius:20px;padding:26px 28px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;transform-origin:top;animation:pop .5s cubic-bezier(.3,1.5,.5,1)}
-@keyframes pop{from{opacity:0;transform:scale(.95) translateY(10px)}}
-.result .pair{font-size:2.2rem;white-space:nowrap}
-.result h3{margin-bottom:.25em}
-.result p{margin:0;color:#6b5547}
-@media (max-width:560px){.result{grid-template-columns:1fr}}
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.3,1)}
+.reveal.in{opacity:1;transform:none}
 
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:46px;counter-reset:s}
-@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.steps{grid-template-columns:1fr}}
-.step{padding:26px;border-radius:var(--radius);border:1.5px dashed var(--line);transition:border-color .3s,background .3s}
-.step:hover{border-color:var(--terracotta);border-style:solid;background:var(--paper)}
-.step::before{counter-increment:s;content:"0" counter(s);font-family:"Fraunces",serif;font-size:2.4rem;color:var(--honey);display:block;line-height:1;margin-bottom:12px;transition:transform .3s}
-.step:hover::before{transform:translateX(6px)}
-.step p{color:var(--muted);margin:0}
-
-/* pricing */
-.pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px;align-items:stretch}
-@media (max-width:980px){.pricing{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.pricing{grid-template-columns:1fr}}
-.price{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
-.price:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.price.feature{background:var(--terracotta);color:#fff8f0;border-color:transparent;transform:scale(1.03)}
-.price.feature:hover{transform:scale(1.03) translateY(-6px)}
-.price.feature .muted,.price.feature li{color:#ffe7d6}
-.price .amt{font-family:"Fraunces",serif;font-size:2.2rem;margin:6px 0 2px}
-.price .amt small{font-size:.95rem;font-family:"DM Sans";opacity:.8}
-.price .muted{color:var(--muted);font-size:.92rem}
-.price ul{list-style:none;padding:0;margin:18px 0 24px;flex:1}
-.price li{padding:6px 0 6px 26px;position:relative;font-size:.95rem;color:var(--muted)}
-.price li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:8px;border-left:2px solid var(--sage);border-bottom:2px solid var(--sage);transform:rotate(-45deg)}
-.price.feature li::before{border-color:#ffe2a8}
-.price .btn{justify-content:center}
-.price.feature .btn{background:#fff8f0;color:var(--terracotta-deep)}
-.tag{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--honey);color:#3a2a22;padding:4px 10px;border-radius:999px;margin-bottom:10px}
-.note{margin-top:22px;color:var(--muted);font-size:.95rem;text-align:center}
-
-/* suppers */
-.supper{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-@media (max-width:860px){.supper{grid-template-columns:1fr}}
-.table-art{background:var(--paper);border:1px solid var(--line);border-radius:32px;padding:40px 30px;position:relative}
-.long-table{height:70px;border-radius:999px;background:linear-gradient(90deg,var(--honey),var(--terracotta));margin:46px 0;position:relative;box-shadow:var(--shadow)}
-.seats{display:flex;justify-content:space-around}
-.seat{width:42px;height:42px;border-radius:50%;background:var(--c);display:grid;place-items:center;font-size:1.1rem;transition:transform .35s cubic-bezier(.3,1.6,.5,1);cursor:default}
-.table-art:hover .seats.top .seat{transform:translateY(18px)}
-.table-art:hover .seats.bottom .seat{transform:translateY(-18px)}
-.seat:nth-child(2){transition-delay:.05s}.seat:nth-child(3){transition-delay:.1s}.seat:nth-child(4){transition-delay:.15s}.seat:nth-child(5){transition-delay:.2s}
+/* suppers table */
+.seat{width:40px;height:40px;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.tbl:hover .top .seat{transform:translateY(14px)}
+.tbl:hover .bot .seat{transform:translateY(-14px)}
 
 /* faq */
-.faq{max-width:760px;margin:40px auto 0}
-details{border-bottom:1px solid var(--line);padding:20px 0}
-summary{cursor:pointer;list-style:none;font-family:"Fraunces",serif;font-size:1.2rem;display:flex;justify-content:space-between;gap:20px}
+summary{list-style:none;cursor:pointer}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:"DM Sans";font-size:1.6rem;line-height:1;color:var(--terracotta);transition:transform .3s}
-details[open] summary::after{transform:rotate(45deg)}
-details p{color:var(--muted);margin:12px 0 0;animation:pop .4s ease}
+summary .pm{transition:transform .25s}
+details[open] summary .pm{transform:rotate(45deg)}
 
-/* contact */
-.contact{background:var(--blush);border-radius:32px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
-@media (max-width:860px){.contact{grid-template-columns:1fr;padding:32px 22px}}
-form{display:grid;gap:14px}
-.field{position:relative}
-.field input,.field textarea,.field select{width:100%;padding:20px 16px 8px;border-radius:14px;border:1.5px solid transparent;background:var(--paper);color:var(--ink);font:inherit;transition:border-color .2s,box-shadow .2s}
-.field textarea{min-height:110px;resize:vertical}
-.field label{position:absolute;left:16px;top:14px;color:var(--muted);pointer-events:none;transition:all .2s;font-size:1rem}
-.field input:focus,.field textarea:focus,.field select:focus{outline:0;border-color:var(--terracotta);box-shadow:0 0 0 4px color-mix(in srgb,var(--terracotta) 18%,transparent)}
-.field input:focus+label,.field input:not(:placeholder-shown)+label,
-.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label,
-.field select+label{top:5px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--terracotta)}
-.sent{background:var(--paper);border-radius:14px;padding:18px;font-weight:600;animation:pop .5s}
+/* form */
+.inp{box-sizing:border-box;width:100%;font:inherit;background:var(--paper);color:var(--ink);border:2px solid var(--ink);padding:.8rem .9rem;border-radius:0}
+.inp:focus{outline:0;box-shadow:4px 4px 0 var(--terra)}
 
-footer{padding:40px 0 60px;color:var(--muted);font-size:.9rem}
-.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--line);padding-top:28px}
+/* mobile sticky CTA */
+#stickyCta{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;transform:translateY(140%);transition:transform .3s}
+#stickyCta.show{transform:none}
+@media (min-width:60em){#stickyCta{display:none}}
 
-/* scroll reveal */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.3,1)}
-.reveal.in{opacity:1;transform:none}
-.theme-btn{background:none;border:1.5px solid var(--line);border-radius:999px;width:40px;height:40px;cursor:pointer;color:var(--ink);font-size:1.05rem;transition:transform .4s}
-.theme-btn:hover{transform:rotate(25deg)}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:99}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
-<body>
+<body class="sans-serif">
+<a class="skip bg-honey ink pa2 mono" href="#main">Skip to content</a>
 
-<nav id="nav">
-  <div class="wrap nav-in">
-    <a href="#" class="logo" aria-label="Common Table home">
-      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="#c8643b"/><circle cx="21" cy="17" r="10" fill="#e8a83e" style="mix-blend-mode:multiply"/></svg>
+<!-- fixed clock: desktop rail -->
+<div id="clock" aria-hidden="true">
+  <div class="rail"></div>
+  <div class="dot" style="top:0"></div>
+  <div class="pl4">
+    <div class="mono f3 b" id="clockTime">08:00</div>
+    <div class="mono f7 ttu tracked" id="clockLabel">First hello</div>
+  </div>
+</div>
+<!-- fixed clock: mobile pill -->
+<div id="clockPill" class="mono f7 b bg-paper ink ba bw1 b--ink ph2 pv1" aria-hidden="true"><span id="pillTime">08:00</span> · <span id="pillLabel">First hello</span></div>
+<div id="sun" aria-hidden="true"></div>
+
+<nav class="ph3 ph5-l">
+  <div class="mw8 center flex items-center justify-between pv3 bb bw2 b--fg">
+    <a href="#top" class="link flex items-center serif b f4" style="color:inherit">
+      <svg width="30" height="30" viewBox="0 0 34 34" class="mr2" aria-hidden="true"><circle cx="13" cy="17" r="10" fill="#C8572F"/><circle cx="21" cy="17" r="10" fill="#F2A93B" style="mix-blend-mode:multiply"/></svg>
       Common Table
     </a>
-    <div class="nav-links">
-      <a href="#what">What we do</a>
-      <a href="#match">Try a match</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#suppers">Suppers</a>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">☾</button>
-      <a href="#contact" class="btn btn-primary">Grab a coffee</a>
+    <div class="flex items-center mono f6">
+      <a href="#who" class="link underline-hover dn di-l mr4" style="color:inherit">Who it's for</a>
+      <a href="#match" class="link underline-hover dn di-l mr4" style="color:inherit">Try a match</a>
+      <a href="#pricing" class="link underline-hover dn di-l mr4" style="color:inherit">Pricing</a>
+      <a href="#suppers" class="link underline-hover dn di-l mr4" style="color:inherit">Suppers</a>
+      <a href="#contact" class="link press bg-terra paper b ph3 pv2 ba bw1 b--ink dn di-ns">Grab a coffee →</a>
     </div>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="blob" style="width:420px;height:420px;background:var(--honey);top:-120px;right:-80px"></div>
-  <div class="blob" style="width:360px;height:360px;background:var(--blush);bottom:-140px;left:-100px;animation-delay:-6s"></div>
-  <div class="wrap hero-grid">
-    <div class="reveal">
-      <span class="eyebrow">Partnership studio · Singapore</span>
-      <h1>Good things happen when the right people <em>share a table.</em></h1>
-      <p class="lead">We connect homegrown brands, cafés and startups, and help them build collaborations their customers actually get excited about: from the first idea to launch day.</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Book a free coffee chat <span class="arrow">→</span></a>
-        <a href="#match" class="btn btn-ghost">See a match idea</a>
-      </div>
+<main id="main">
+
+<!-- 08:00 HERO -->
+<header id="top" class="ph3 ph5-l" data-time="08:00" data-label="First hello" data-bg="#FBF1E3" data-fg="#2B1D16">
+  <div class="mw8 center pt5 pb6-l pb5 pl6-l">
+    <p class="mono f6 ttu tracked mb4 reveal">08:00 · Partnership studio · Singapore</p>
+    <h1 class="serif f2 f1-m f-subheadline-l lh-tight tracked-snug mt0 mb4 measure-narrow-l reveal" style="max-width:14ch">
+      The right people at the <em class="terra">same table.</em>
+    </h1>
+    <p class="f4-ns f5 lh-copy measure mb4 reveal">We introduce homegrown brands, cafés and startups to the partners they should be working with, then help build the collab from first idea to launch day.</p>
+    <div class="flex flex-wrap items-center reveal">
+      <a href="#contact" class="link press bg-terra paper b ph4 pv3 ba bw2 b--ink mr3 mb3 mono">Book a free coffee chat →</a>
+      <a href="#match" class="link b mb3 mono underline" style="color:inherit">or try a match first ↓</a>
     </div>
-    <div class="hero-art reveal" aria-hidden="true">
-      <svg viewBox="0 0 440 440">
-        <g class="orbit">
-          <circle cx="220" cy="220" r="190" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 10"/>
-          <circle cx="220" cy="30" r="9" fill="var(--sage)"/>
-          <circle cx="410" cy="220" r="7" fill="var(--honey)"/>
-          <circle cx="86" cy="355" r="8" fill="var(--terracotta)"/>
-        </g>
-        <circle class="orb orb-a" cx="175" cy="220" r="95" fill="var(--terracotta)" opacity=".9"/>
-        <circle class="orb orb-b" cx="265" cy="220" r="95" fill="var(--honey)" opacity=".85" style="mix-blend-mode:multiply"/>
-        <g class="spark"><path d="M220 168 l8 30 30 8 -30 8 -8 30 -8 -30 -30 -8 30 -8z" fill="#fff8ef"/></g>
-      </svg>
-      <span class="chip-float" style="top:8%;left:-4%">☕ Café</span>
-      <span class="chip-float" style="top:18%;right:-6%;animation-delay:-1.5s">🧴 Skincare brand</span>
-      <span class="chip-float" style="bottom:10%;left:4%;animation-delay:-3s">🚀 Startup</span>
-      <span class="chip-float" style="bottom:4%;right:2%;animation-delay:-2s">🎁 Festive drop</span>
-    </div>
+    <p class="mono f7 mt4 o-70 reveal">↓ Scroll through a day at Common Table</p>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Co-branded drops</span><span>Café pop-ups</span><span>Festive gift sets</span><span>Menu collabs</span><span>Founder suppers</span><span>Distributor intros</span><span>Corporate pilots</span><span>Merch capsules</span>
-    <span>Co-branded drops</span><span>Café pop-ups</span><span>Festive gift sets</span><span>Menu collabs</span><span>Founder suppers</span><span>Distributor intros</span><span>Corporate pilots</span><span>Merch capsules</span>
+<div class="marquee overflow-hidden bg-ink paper bt bb bw2 b--ink pv3" aria-hidden="true">
+  <div class="marquee-track mono f5 ttu">
+    <span class="ph4">Co-branded drops ✦</span><span class="ph4">Café pop-ups ✦</span><span class="ph4">Festive gift sets ✦</span><span class="ph4">Menu collabs ✦</span><span class="ph4">Founder suppers ✦</span><span class="ph4">Distributor intros ✦</span><span class="ph4">Merch capsules ✦</span>
+    <span class="ph4">Co-branded drops ✦</span><span class="ph4">Café pop-ups ✦</span><span class="ph4">Festive gift sets ✦</span><span class="ph4">Menu collabs ✦</span><span class="ph4">Founder suppers ✦</span><span class="ph4">Distributor intros ✦</span><span class="ph4">Merch capsules ✦</span>
   </div>
 </div>
 
-<section id="what">
-  <div class="wrap">
-    <div class="reveal">
-      <span class="eyebrow">What we do</span>
-      <h2>Three tables. One idea: better together.</h2>
-      <p class="lead">Big brands have agencies for this. You have us: one warm introduction at a time, and someone to carry the collab over the finish line.</p>
-    </div>
-    <div class="cards">
-      <article class="card reveal" style="--c:var(--blush)">
-        <div class="icon">🤝</div>
-        <h3>Brand × Brand</h3>
-        <p>For homegrown labels in fashion, beauty, food and lifestyle that want to reach a new audience through a partner who already has it.</p>
-        <ul><li>Co-branded products and capsules</li><li>Festive gift sets</li><li>Joint campaigns</li></ul>
-      </article>
-      <article class="card reveal" style="--c:color-mix(in srgb,var(--honey) 55%,transparent)">
-        <div class="icon">☕</div>
-        <h3>Cafés & Venues</h3>
-        <p>For cafés, restaurants, bars, gyms and studios that want fresh faces through the door on a quiet Tuesday.</p>
-        <ul><li>Brand pop-ups and takeovers</li><li>Menu and chef collabs</li><li>Community events</li></ul>
-      </article>
-      <article class="card reveal" style="--c:color-mix(in srgb,var(--sage) 55%,transparent)">
-        <div class="icon">🚀</div>
-        <h3>Startups & B2B</h3>
-        <p>For founders who need the right door opened: distributors, channel partners, suppliers or a first corporate pilot.</p>
-        <ul><li>Vetted warm introductions</li><li>Partner shortlists</li><li>Success-based fees</li></ul>
-      </article>
+<!-- 09:30 WHO -->
+<section id="who" class="ph3 ph5-l pv6-l pv5" data-time="09:30" data-label="Who's coming" data-bg="#FFE9C2" data-fg="#2B1D16">
+  <div class="mw8 center pl6-l">
+    <p class="mono f6 ttu tracked mb2 reveal">No.01 · 09:30 · Who it's for</p>
+    <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb3 reveal">Pull up a chair. Which one's yours?</h2>
+    <p class="f5 f4-l lh-copy measure mb5 reveal">Big brands have agencies to find partners for them. Everyone else has us.</p>
+    <div class="flex flex-wrap nl3 nr3">
+      <div class="w-100 w-third-l ph3 mb4 reveal">
+        <article class="lift bg-paper ink ba bw2 b--ink hard-ink pa4 h-100 flex flex-column">
+          <div class="mono f7 ttu tracked mb3 bg-blush self-start ph2 pv1">Lane A</div>
+          <h3 class="serif f3 mt0 mb2">Brand × Brand</h3>
+          <p class="lh-copy f5 mt0 flex-auto">Homegrown fashion, beauty, food and lifestyle labels that want a new audience through a partner who already has it.</p>
+          <button data-preset="fashion" class="preset mono f6 b bg-transparent ba bw1 b--ink pa2 pointer tl ink">Show me an idea →</button>
+        </article>
+      </div>
+      <div class="w-100 w-third-l ph3 mb4 reveal">
+        <article class="lift bg-paper ink ba bw2 b--ink hard-ink pa4 h-100 flex flex-column">
+          <div class="mono f7 ttu tracked mb3 bg-honey self-start ph2 pv1">Lane B</div>
+          <h3 class="serif f3 mt0 mb2">Cafés & venues</h3>
+          <p class="lh-copy f5 mt0 flex-auto">Cafés, restaurants, gyms and studios that want fresh faces through the door, even on a quiet Tuesday.</p>
+          <button data-preset="cafe" class="preset mono f6 b bg-transparent ba bw1 b--ink pa2 pointer tl ink">Show me an idea →</button>
+        </article>
+      </div>
+      <div class="w-100 w-third-l ph3 mb4 reveal">
+        <article class="lift bg-paper ink ba bw2 b--ink hard-ink pa4 h-100 flex flex-column">
+          <div class="mono f7 ttu tracked mb3 bg-sage self-start ph2 pv1">Lane C</div>
+          <h3 class="serif f3 mt0 mb2">Startups & B2B</h3>
+          <p class="lh-copy f5 mt0 flex-auto">Founders who need the right door opened: distributors, channel partners, suppliers or a first corporate pilot.</p>
+          <button data-preset="startup" class="preset mono f6 b bg-transparent ba bw1 b--ink pa2 pointer tl ink">Show me an idea →</button>
+        </article>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="match" style="padding-top:0">
-  <div class="wrap">
-    <div class="matcher reveal">
-      <div class="blob" style="width:300px;height:300px;background:var(--terracotta);top:-120px;right:-100px;opacity:.35"></div>
-      <div style="position:relative">
-        <span class="eyebrow" style="color:var(--honey)">Try it</span>
-        <h2>What could your next collab look like?</h2>
-        <p class="lead">Pick who you are and what you're after. Here's the kind of idea we'd bring to our first coffee.</p>
-        <div class="picker">
-          <div class="picker-label">I run a…</div>
-          <div class="chips" role="radiogroup" aria-label="Business type">
-            <input type="radio" name="who" id="w1" value="cafe" checked><label for="w1">☕ Café / restaurant</label>
-            <input type="radio" name="who" id="w2" value="fashion"><label for="w2">👕 Fashion label</label>
-            <input type="radio" name="who" id="w3" value="beauty"><label for="w3">🧴 Beauty / wellness brand</label>
-            <input type="radio" name="who" id="w4" value="studio"><label for="w4">🧘 Gym / studio</label>
-            <input type="radio" name="who" id="w5" value="startup"><label for="w5">🚀 Startup</label>
-          </div>
-          <div class="picker-label">and I want…</div>
-          <div class="chips" role="radiogroup" aria-label="Goal">
-            <input type="radio" name="goal" id="g1" value="audience" checked><label for="g1">New customers</label>
-            <input type="radio" name="goal" id="g2" value="buzz"><label for="g2">Buzz for a launch</label>
-            <input type="radio" name="goal" id="g3" value="festive"><label for="g3">A festive moment</label>
+<!-- 11:00 MATCH -->
+<section id="match" class="ph3 ph5-l pv6-l pv5" data-time="11:00" data-label="Ideas brewing" data-bg="#FFD58F" data-fg="#2B1D16">
+  <div class="mw8 center pl6-l">
+    <p class="mono f6 ttu tracked mb2 reveal">No.02 · 11:00 · Try a match</p>
+    <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb3 reveal">What could your next collab look like?</h2>
+    <p class="f5 f4-l lh-copy measure mb4 reveal">Two taps. This is the kind of idea we'd bring to our first coffee.</p>
+
+    <div class="bg-paper ink ba bw2 b--ink hard-ink pa4 pa5-l reveal">
+      <fieldset class="bn pa0 ma0 mb3">
+        <legend class="mono f7 ttu tracked b mb3">1 · I run a…</legend>
+        <div class="flex flex-wrap" id="whoChips">
+          <label class="chip mr2 mb2"><input type="radio" name="who" value="cafe" checked><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">☕ Café / restaurant</span></label>
+          <label class="chip mr2 mb2"><input type="radio" name="who" value="fashion"><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">👕 Fashion label</span></label>
+          <label class="chip mr2 mb2"><input type="radio" name="who" value="beauty"><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">🧴 Beauty / wellness</span></label>
+          <label class="chip mr2 mb2"><input type="radio" name="who" value="studio"><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">🧘 Gym / studio</span></label>
+          <label class="chip mr2 mb2"><input type="radio" name="who" value="startup"><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">🚀 Startup</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="bn pa0 ma0 mb4">
+        <legend class="mono f7 ttu tracked b mb3">2 · and I want…</legend>
+        <div class="flex flex-wrap">
+          <label class="chip mr2 mb2"><input type="radio" name="goal" value="audience" checked><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">New customers</span></label>
+          <label class="chip mr2 mb2"><input type="radio" name="goal" value="buzz"><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">Buzz for a launch</span></label>
+          <label class="chip mr2 mb2"><input type="radio" name="goal" value="festive"><span class="mono f6 ba bw1 b--ink ph3 pv2 pointer">A festive moment</span></label>
+        </div>
+      </fieldset>
+      <div class="bt bw2 b--ink pt4" aria-live="polite">
+        <p class="mono f7 ttu tracked b mb2">→ Your match</p>
+        <div id="result" class="flex flex-column flex-row-ns items-start-ns">
+          <div id="rPair" class="f1 mr4-ns mb2 nowrap"></div>
+          <div class="flex-auto">
+            <h3 id="rTitle" class="serif f3 mt0 mb2"></h3>
+            <p id="rDesc" class="lh-copy mt0 mb3 measure"></p>
+            <p class="mono f7 mt0 mb3">Usually a <b id="rPlan"></b></p>
+            <button id="bringIdea" class="press mono b bg-terra paper ba bw2 b--ink ph3 pv2 pointer">Bring this idea to coffee →</button>
           </div>
         </div>
-        <div class="result" id="result" aria-live="polite"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="reveal">
-      <span class="eyebrow">How it works</span>
-      <h2>From hello to launch day.</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><h3>Coffee chat</h3><p>30 minutes, on us. We learn your story, audience and goals.</p></div>
-      <div class="step reveal"><h3>The match</h3><p>We shortlist partners who genuinely fit your values and customers.</p></div>
-      <div class="step reveal"><h3>Warm intro</h3><p>A personal introduction (never a cold email), then we shape the idea together.</p></div>
-      <div class="step reveal"><h3>Launch</h3><p>Terms, timeline, content and launch-day coordination. Then we celebrate.</p></div>
-    </div>
+<!-- 13:00 HOW -->
+<section id="how" class="ph3 ph5-l pv6-l pv5" data-time="13:00" data-label="Lunch meeting" data-bg="#FBBF85" data-fg="#2B1D16">
+  <div class="mw8 center pl6-l">
+    <p class="mono f6 ttu tracked mb2 reveal">No.03 · 13:00 · How it works</p>
+    <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb5 reveal">From hello to launch day in four steps.</h2>
+    <ol class="list pa0 ma0 bl bw2 b--fg">
+      <li class="relative pl4 pl5-ns pb5 reveal">
+        <span class="absolute bg-terra ba bw2 b--fg" style="left:-11px;top:6px;width:20px;height:20px"></span>
+        <p class="mono f6 b mt0 mb1">STEP 01 · 30 MIN · FREE</p>
+        <h3 class="serif f3 f2-ns mt0 mb2">Coffee chat</h3>
+        <p class="lh-copy measure mt0">We learn your story, your customers and what a good outcome looks like for you.</p>
+      </li>
+      <li class="relative pl4 pl5-ns pb5 reveal">
+        <span class="absolute bg-honey ba bw2 b--fg" style="left:-11px;top:6px;width:20px;height:20px"></span>
+        <p class="mono f6 b mt0 mb1">STEP 02 · ~1 WEEK</p>
+        <h3 class="serif f3 f2-ns mt0 mb2">The match</h3>
+        <p class="lh-copy measure mt0">We shortlist partners whose audience, values and timing genuinely fit yours. Fit matters more than follower count.</p>
+      </li>
+      <li class="relative pl4 pl5-ns pb5 reveal">
+        <span class="absolute bg-sage ba bw2 b--fg" style="left:-11px;top:6px;width:20px;height:20px"></span>
+        <p class="mono f6 b mt0 mb1">STEP 03 · 1–2 WEEKS</p>
+        <h3 class="serif f3 f2-ns mt0 mb2">Warm intro</h3>
+        <p class="lh-copy measure mt0">A personal introduction, never a cold email. Then we shape the idea, the split and who does what.</p>
+      </li>
+      <li class="relative pl4 pl5-ns reveal">
+        <span class="absolute bg-paper ba bw2 b--fg" style="left:-11px;top:6px;width:20px;height:20px"></span>
+        <p class="mono f6 b mt0 mb1">STEP 04 · 2–6 WEEKS</p>
+        <h3 class="serif f3 f2-ns mt0 mb2">Launch</h3>
+        <p class="lh-copy measure mt0">Timeline, content and launch-day coordination. Then a wrap-up on what worked and what's next.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
-<section id="pricing" style="background:var(--paper);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <div class="reveal" style="text-align:center">
-      <span class="eyebrow">Pricing</span>
-      <h2>Simple, honest, in SGD.</h2>
-      <p class="lead" style="margin:0 auto">Start small with an introduction, or let us run the whole thing.</p>
-    </div>
-    <div class="pricing">
-      <div class="price reveal">
-        <h3>The Warm Intro</h3>
-        <div class="amt">S$800</div>
-        <div class="muted">one-off package</div>
-        <ul><li>3 vetted partner matches</li><li>One-page brief on each</li><li>Personal introductions</li></ul>
-        <a href="#contact" class="btn btn-ghost">Get matched</a>
-      </div>
-      <div class="price feature reveal">
-        <span class="tag">Most loved</span>
-        <h3>Collab Sprint</h3>
-        <div class="amt">S$3.5–6k</div>
-        <div class="muted">per collaboration, 4–8 weeks</div>
-        <ul><li>Concept and partner sourcing</li><li>Terms and revenue split agreed</li><li>Launch plan and timeline</li><li>Launch-day coordination</li></ul>
-        <a href="#contact" class="btn">Start a sprint</a>
-      </div>
-      <div class="price reveal">
-        <h3>Partnerships Retainer</h3>
-        <div class="amt">S$2,500<small>/mo</small></div>
-        <div class="muted">3-month minimum</div>
-        <ul><li>2–4 qualified intros monthly</li><li>One collab managed per quarter</li><li>Monthly pipeline report</li></ul>
-        <a href="#contact" class="btn btn-ghost">Let's talk</a>
-      </div>
-      <div class="price reveal">
-        <h3>B2B Intro</h3>
-        <div class="amt">S$500<small> + 8%</small></div>
-        <div class="muted">of first-year contract value, capped</div>
-        <ul><li>Distributors and channel partners</li><li>Corporate pilots</li><li>We win when you win</li></ul>
-        <a href="#contact" class="btn btn-ghost">Open a door</a>
-      </div>
-    </div>
-    <p class="note">✦ Launch offer: our first three clients get 30% off a Collab Sprint.</p>
-  </div>
-</section>
-
-<section id="suppers">
-  <div class="wrap supper">
-    <div class="reveal">
-      <span class="eyebrow">Common Table Suppers</span>
-      <h2>Once a month, we pull up chairs.</h2>
-      <p class="lead">A long-table dinner for 12–20 founders and brand owners at a partner venue. No pitching, no name tags: just good food and people worth knowing. Half our best collabs start over dessert.</p>
-      <a href="#contact" class="btn btn-primary">Save me a seat <span class="arrow">→</span></a>
-    </div>
-    <div class="table-art reveal" aria-hidden="true" title="Hover to pull up a chair">
-      <div class="seats top"><div class="seat" style="--c:var(--blush)">🙂</div><div class="seat" style="--c:var(--honey)">😄</div><div class="seat" style="--c:var(--sage)">🤓</div><div class="seat" style="--c:var(--blush)">😊</div><div class="seat" style="--c:var(--honey)">🥳</div></div>
-      <div class="long-table"></div>
-      <div class="seats bottom"><div class="seat" style="--c:var(--sage)">😌</div><div class="seat" style="--c:var(--blush)">🤗</div><div class="seat" style="--c:var(--honey)">😁</div><div class="seat" style="--c:var(--sage)">🙌</div><div class="seat" style="--c:var(--blush)">😎</div></div>
-    </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="reveal" style="text-align:center">
-      <span class="eyebrow">Questions</span>
-      <h2>Good to know</h2>
-    </div>
-    <div class="faq reveal">
-      <details><summary>How is this different from an influencer agency?</summary><p>Agencies sell reach. We sell fit: two businesses whose customers, values and timing line up, so the collab feels natural and both sides gain.</p></details>
-      <details><summary>Do I need a big budget?</summary><p>No. Many collabs cost the partners very little beyond product and time. Our fee is the main cost, and the Warm Intro is a low-risk place to start.</p></details>
-      <details><summary>How far ahead should we plan a festive collab?</summary><p>Two to four months. For Lunar New Year, start the conversation in October or November.</p></details>
-      <details><summary>What happens after you introduce us?</summary><p>On a Warm Intro, you take it from there (we're a message away). On a Sprint, we stay with you through terms, timeline and launch.</p></details>
-    </div>
-  </div>
-</section>
-
-<section id="contact" style="padding-top:0">
-  <div class="wrap">
-    <div class="contact reveal">
-      <div>
-        <span class="eyebrow">Say hello</span>
-        <h2>Let's grab a coffee.</h2>
-        <p class="lead" style="color:var(--ink);opacity:.8">Tell us a little about you, and we'll come back within two working days with a time, and probably a collab idea or two.</p>
-      </div>
-      <form id="form">
-        <div class="field"><input id="f-name" placeholder=" " required><label for="f-name">Your name</label></div>
-        <div class="field"><input id="f-biz" placeholder=" " required><label for="f-biz">Business name</label></div>
-        <div class="field"><input id="f-email" type="email" placeholder=" " required><label for="f-email">Email</label></div>
-        <div class="field">
-          <select id="f-type"><option>Brand × Brand collab</option><option>Café / venue collab</option><option>Startup / B2B intro</option><option>Common Table Supper</option></select>
-          <label for="f-type">I'm interested in</label>
+<!-- 15:00 PRICING -->
+<section id="pricing" class="ph3 ph5-l pv6-l pv5" data-time="15:00" data-label="Talking terms" data-bg="#F29A69" data-fg="#2B1D16">
+  <div class="mw8 center pl6-l">
+    <p class="mono f6 ttu tracked mb2 reveal">No.04 · 15:00 · Pricing</p>
+    <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb3 reveal">Simple, honest, in SGD.</h2>
+    <p class="f5 f4-l lh-copy measure mb5 reveal">Not sure which one you need? That's what the free coffee chat is for.</p>
+    <div class="flex flex-wrap nl2 nr2">
+      <div class="w-100 w-50-m w-25-l ph2 mb4 reveal">
+        <div class="lift bg-paper ink ba bw2 b--ink pa3 pa4-ns h-100 flex flex-column">
+          <p class="mono f7 ttu tracked mt0 mb2">Best to start</p>
+          <h3 class="serif f4 mt0 mb2">The Warm Intro</h3>
+          <p class="serif f2 b mv2">S$800</p>
+          <p class="mono f7 mt0 mb3">one-off</p>
+          <ul class="list pa0 lh-copy f6 flex-auto mt0"><li class="mb1">→ 3 vetted partner matches</li><li class="mb1">→ One-page brief on each</li><li>→ Personal introductions</li></ul>
+          <a href="#contact" data-plan="The Warm Intro" class="plan link press mono f6 b tc ink bg-paper ba bw2 b--ink pv2 mt3">Choose →</a>
         </div>
-        <div class="field"><textarea id="f-msg" placeholder=" "></textarea><label for="f-msg">Anything else? (optional)</label></div>
-        <button class="btn btn-primary" type="submit">Send <span class="arrow">→</span></button>
+      </div>
+      <div class="w-100 w-50-m w-25-l ph2 mb4 reveal">
+        <div class="lift bg-ink paper ba bw2 b--ink pa3 pa4-ns h-100 flex flex-column" style="box-shadow:6px 6px 0 var(--honey)">
+          <p class="mono f7 ttu tracked mt0 mb2 bg-honey ink self-start ph2 pv1">Most popular</p>
+          <h3 class="serif f4 mt0 mb2">Collab Sprint</h3>
+          <p class="serif f2 b mv2 nowrap">S$3.5k<span class="f5">–6k</span></p>
+          <p class="mono f7 mt0 mb3">per collab · 4–8 weeks</p>
+          <ul class="list pa0 lh-copy f6 flex-auto mt0"><li class="mb1">→ Concept + partner sourcing</li><li class="mb1">→ Terms and split agreed</li><li class="mb1">→ Launch plan + timeline</li><li>→ Launch-day coordination</li></ul>
+          <a href="#contact" data-plan="Collab Sprint" class="plan link press mono f6 b tc ink bg-honey ba bw2 b--ink pv2 mt3">Choose →</a>
+        </div>
+      </div>
+      <div class="w-100 w-50-m w-25-l ph2 mb4 reveal">
+        <div class="lift bg-paper ink ba bw2 b--ink pa3 pa4-ns h-100 flex flex-column">
+          <p class="mono f7 ttu tracked mt0 mb2">For a steady pipeline</p>
+          <h3 class="serif f4 mt0 mb2">Retainer</h3>
+          <p class="serif f2 b mv2">S$2,500</p>
+          <p class="mono f7 mt0 mb3">per month · 3-month min</p>
+          <ul class="list pa0 lh-copy f6 flex-auto mt0"><li class="mb1">→ 2–4 qualified intros a month</li><li class="mb1">→ 1 collab managed per quarter</li><li>→ Monthly pipeline report</li></ul>
+          <a href="#contact" data-plan="Partnerships Retainer" class="plan link press mono f6 b tc ink bg-paper ba bw2 b--ink pv2 mt3">Choose →</a>
+        </div>
+      </div>
+      <div class="w-100 w-50-m w-25-l ph2 mb4 reveal">
+        <div class="lift bg-paper ink ba bw2 b--ink pa3 pa4-ns h-100 flex flex-column">
+          <p class="mono f7 ttu tracked mt0 mb2">For startups</p>
+          <h3 class="serif f4 mt0 mb2">B2B Intro</h3>
+          <p class="serif f2 b mv2 nowrap">S$500<span class="f5"> +8%</span></p>
+          <p class="mono f7 mt0 mb3">of first-year contract, capped</p>
+          <ul class="list pa0 lh-copy f6 flex-auto mt0"><li class="mb1">→ Distributors, channel partners</li><li class="mb1">→ Corporate pilots</li><li>→ We win when you win</li></ul>
+          <a href="#contact" data-plan="B2B Intro" class="plan link press mono f6 b tc ink bg-paper ba bw2 b--ink pv2 mt3">Choose →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17:30 FOUNDING CLIENTS -->
+<section id="founding" class="ph3 ph5-l pv6-l pv5" data-time="17:30" data-label="Golden hour" data-bg="#D9673D" data-fg="#2B1D16">
+  <div class="mw8 center pl6-l">
+    <div class="ba bw2 b--fg pa4 pa5-l flex flex-column flex-row-l items-center-l reveal">
+      <div class="flex-auto mr5-l mb4 mb0-l">
+        <p class="mono f6 ttu tracked mt0 mb2">No.05 · 17:30 · Founding clients</p>
+        <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb3">Three seats saved for our first collabs.</h2>
+        <p class="lh-copy measure mv0">We're new, and we'd rather say so. Our first three clients get <b>30% off a Collab Sprint</b> in return for a testimonial and letting us share the story.</p>
+      </div>
+      <div class="flex">
+        <div class="bg-paper ink ba bw2 b--ink w3 h3 flex items-center justify-center mono b mr2">01</div>
+        <div class="bg-paper ink ba bw2 b--ink w3 h3 flex items-center justify-center mono b mr2">02</div>
+        <div class="bg-paper ink ba bw2 b--ink w3 h3 flex items-center justify-center mono b">03</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19:30 SUPPERS -->
+<section id="suppers" class="ph3 ph5-l pv6-l pv5" data-time="19:30" data-label="Supper's on" data-bg="#6E3424" data-fg="#FFF1E2">
+  <div class="mw8 center pl6-l flex flex-column flex-row-l items-center-l">
+    <div class="w-100 w-50-l pr5-l mb5 mb0-l">
+      <p class="mono f6 ttu tracked mb2 reveal">No.06 · 19:30 · Common Table Suppers</p>
+      <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb3 reveal">Once a month, we pull up chairs.</h2>
+      <p class="lh-copy f5 f4-l measure mb4 reveal">A long-table dinner for 12–20 founders and brand owners at a partner venue. No pitching, no name tags, just good food and people worth knowing. Plenty of good collabs start over dessert.</p>
+      <a href="#contact" data-plan="Common Table Supper" class="plan link press mono b bg-honey ink ba bw2 b--ink ph4 pv3 dib reveal">Save me a seat →</a>
+    </div>
+    <div class="w-100 w-50-l reveal">
+      <div class="tbl bg-paper ba bw2 b--fg pa4 hard" aria-hidden="true" title="Hover to pull up a chair">
+        <div class="top flex justify-around"><div class="seat br-100 bg-blush ba bw1 b--ink"></div><div class="seat br-100 bg-honey ba bw1 b--ink"></div><div class="seat br-100 bg-sage ba bw1 b--ink"></div><div class="seat br-100 bg-blush ba bw1 b--ink"></div><div class="seat br-100 bg-honey ba bw1 b--ink"></div></div>
+        <div class="bg-terra ba bw2 b--ink mv4 h3 flex items-center justify-center mono paper f6 ttu tracked">The common table</div>
+        <div class="bot flex justify-around"><div class="seat br-100 bg-sage ba bw1 b--ink"></div><div class="seat br-100 bg-blush ba bw1 b--ink"></div><div class="seat br-100 bg-honey ba bw1 b--ink"></div><div class="seat br-100 bg-sage ba bw1 b--ink"></div><div class="seat br-100 bg-blush ba bw1 b--ink"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21:00 FAQ -->
+<section id="faq" class="ph3 ph5-l pv6-l pv5" data-time="21:00" data-label="Last questions" data-bg="#3E241B" data-fg="#FFF1E2">
+  <div class="mw8 center pl6-l">
+    <p class="mono f6 ttu tracked mb2 reveal">No.07 · 21:00 · Questions</p>
+    <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb4 reveal">Before you go…</h2>
+    <div class="bt bw2 b--fg mw7 reveal">
+      <details class="bb bw2 b--fg pv3"><summary class="flex justify-between items-center serif f4"><span>How is this different from an influencer agency?</span><span class="pm mono f3 ml3">+</span></summary><p class="lh-copy measure mb0">Agencies sell reach. We sell fit: two businesses whose customers, values and timing line up, so the collab feels natural and both sides benefit.</p></details>
+      <details class="bb bw2 b--fg pv3"><summary class="flex justify-between items-center serif f4"><span>Do I need a big budget?</span><span class="pm mono f3 ml3">+</span></summary><p class="lh-copy measure mb0">No. Many collabs cost the partners little beyond product and time. The Warm Intro is a low-risk place to start.</p></details>
+      <details class="bb bw2 b--fg pv3"><summary class="flex justify-between items-center serif f4"><span>How far ahead should we plan a festive collab?</span><span class="pm mono f3 ml3">+</span></summary><p class="lh-copy measure mb0">Two to four months. For Lunar New Year, start the conversation in October or November.</p></details>
+      <details class="bb bw2 b--fg pv3"><summary class="flex justify-between items-center serif f4"><span>What if the other side goes around you?</span><span class="pm mono f3 ml3">+</span></summary><p class="lh-copy measure mb0">Every intro comes with a simple written agreement, so everyone knows the terms before names are shared.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 22:00 CONTACT -->
+<section id="contact" class="ph3 ph5-l pv6-l pv5" data-time="22:00" data-label="See you tomorrow" data-bg="#24160F" data-fg="#FFF1E2">
+  <div class="mw8 center pl6-l flex flex-column flex-row-l">
+    <div class="w-100 w-40-l pr5-l mb4">
+      <p class="mono f6 ttu tracked mb2 reveal">No.08 · 22:00 · Say hello</p>
+      <h2 class="serif f2 f1-l lh-tight tracked-snug mt0 mb3 reveal">Coffee tomorrow?</h2>
+      <p class="lh-copy f5 f4-l measure reveal">Tell us a little about you. We'll reply within two working days with a time, and probably a collab idea or two.</p>
+    </div>
+    <div class="w-100 w-60-l reveal">
+      <form id="form" class="bg-paper ink ba bw2 b--fg pa4 hard">
+        <div class="flex flex-wrap nl2 nr2">
+          <label class="w-100 w-50-ns ph2 mb3 db"><span class="mono f7 ttu tracked b db mb1">Your name</span><input id="fName" class="inp" required autocomplete="name"></label>
+          <label class="w-100 w-50-ns ph2 mb3 db"><span class="mono f7 ttu tracked b db mb1">Business</span><input id="fBiz" class="inp" required autocomplete="organization"></label>
+          <label class="w-100 ph2 mb3 db"><span class="mono f7 ttu tracked b db mb1">Email</span><input id="fEmail" type="email" class="inp" required autocomplete="email"></label>
+          <label class="w-100 ph2 mb3 db"><span class="mono f7 ttu tracked b db mb1">Interested in</span>
+            <select id="fPlan" class="inp"><option>Not sure yet: let's chat</option><option>The Warm Intro</option><option>Collab Sprint</option><option>Partnerships Retainer</option><option>B2B Intro</option><option>Common Table Supper</option></select></label>
+          <label class="w-100 ph2 mb3 db"><span class="mono f7 ttu tracked b db mb1">Anything else? <span class="normal ttn">(optional)</span></span><textarea id="fMsg" class="inp" rows="4"></textarea></label>
+        </div>
+        <button class="press mono b bg-terra paper ba bw2 b--ink ph4 pv3 pointer w-100 w-auto-ns" type="submit">Send →</button>
       </form>
     </div>
   </div>
 </section>
+</main>
 
-<footer>
-  <div class="wrap foot">
+<footer class="ph3 ph5-l pb5" style="background:#24160F;color:#FFF1E2">
+  <div class="mw8 center pl6-l bt bw2 pt4 mono f7 flex flex-wrap justify-between" style="border-color:#FFF1E2">
     <span>© <span id="yr"></span> Common Table · Singapore</span>
-    <span>Partnerships, made warmly. ✦</span>
+    <span>Partnerships, made warmly ✦</span>
   </div>
 </footer>
 
+<a id="stickyCta" href="#contact" class="link press bg-terra paper b mono tc ba bw2 b--ink pv3">Book a free coffee chat →</a>
+
 <script>
-// sticky nav border
-const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// scroll reveal
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4)*80+'ms';io.observe(el)});
-
-// theme toggle
-const tb=document.getElementById('themeBtn');
-const setTheme=t=>{document.documentElement.dataset.theme=t;tb.textContent=t==='dark'?'☀':'☾';try{localStorage.setItem('ct-theme',t)}catch(e){}};
-let saved=null;try{saved=localStorage.getItem('ct-theme')}catch(e){}
-if(saved)setTheme(saved);else if(matchMedia('(prefers-color-scheme: dark)').matches)tb.textContent='☀';
-tb.onclick=()=>{const dark=document.documentElement.dataset.theme==='dark'||(!document.documentElement.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);setTheme(dark?'light':'dark')};
-
-// collab matcher
-const ideas={
-  cafe:{audience:['☕ × 🧴','Café × skincare brand','A "slow Sunday" brunch set with take-home minis from a homegrown skincare label. Their followers discover your space; your regulars discover them.'],
-        buzz:['☕ × 🎨','Café × local illustrator','A limited-edition cup sleeve and tote drawn by a local illustrator, launched with a live-drawing weekend.'],
-        festive:['☕ × 🧦','Café × apparel label','A festive merch capsule (socks, totes, tees) inspired by your signature bake, sold in-store as gifts.']},
-  fashion:{audience:['👕 × ☕','Label × neighbourhood café','A weekend pop-up rail inside a busy café, with a drink-and-browse discount for anyone who buys.'],
-        buzz:['👕 × 🍛','Label × heritage food brand','A playful capsule inspired by an iconic local snack: nostalgia sells out fast.'],
-        festive:['👕 × 🀄','Label × lifestyle brand','A co-designed Lunar New Year gift set, limited run, with a shared launch event.']},
-  beauty:{audience:['🧴 × 🧘','Skincare × yoga studio','Post-class "glow bar" with your products, plus a sample in every new member\'s welcome kit.'],
-        buzz:['🧴 × 🍰','Skincare × café','An afternoon-tea menu designed around your new launch\'s hero ingredients.'],
-        festive:['🧴 × 🍵','Wellness × tea brand','A self-care gift box for the holidays, co-marketed to both communities.']},
-  studio:{audience:['🧘 × 🥗','Studio × healthy café','Show your class booking for a post-workout bowl discount, and their diners get a free trial class.'],
-        buzz:['🧘 × 👟','Studio × activewear label','A launch-week class series where everyone trains in the new collection.'],
-        festive:['🧘 × 🧴','Studio × wellness brand','A "reset for the new year" challenge with a shared prize pack.']},
-  startup:{audience:['🚀 × 🏢','Startup × channel partner','Three vetted distributors or resellers who already sell to your customers, introduced in person.'],
-        buzz:['🚀 × 🍽️','Startup × community dinner','Host a Common Table Supper for your launch, with 20 founders who could become your first champions.'],
-        festive:['🚀 × 🎁','Startup × corporate gifting','A pilot with a corporate gifting partner during the year-end rush.']}
-};
-const res=document.getElementById('result');
-function renderMatch(){
-  const w=document.querySelector('input[name=who]:checked').value,g=document.querySelector('input[name=goal]:checked').value;
-  const [pair,title,desc]=ideas[w][g];
-  res.style.animation='none';res.offsetHeight;res.style.animation='';
-  res.innerHTML=`<div class="pair">${pair}</div><div><h3>${title}</h3><p>${desc}</p></div>`;
+/* ---------- day-passing scroll: colours, clock, sun ---------- */
+const stops=$$('[data-time]');
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,t)=>'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')';
+const mins=t=>{const[h,m]=t.split(':').map(Number);return h*60+m};
+const fmt=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(Math.round(m%60)).padStart(2,'0');
+const root=document.documentElement, sun=$('#sun'), dot=$('#clock .dot');
+function tick(){
+  const mid=scrollY+Math.min(160,innerHeight*.2);
+  let i=0; while(i<stops.length-1 && stops[i+1].offsetTop<=mid) i++;
+  const a=stops[i], b=stops[Math.min(i+1,stops.length-1)];
+  const span=(b.offsetTop-a.offsetTop)||1;
+  let t=a===b?0:Math.min(1,Math.max(0,(mid-a.offsetTop)/span));
+  const tc=Math.max(0,(t-.55)/.45); // hold a section's colour, then blend into the next
+  root.style.setProperty('--bg',mix(hex(a.dataset.bg),hex(b.dataset.bg),tc));
+  root.style.setProperty('--fg',(tc<.5?a:b).dataset.fg);
+  const m=mins(a.dataset.time)+(mins(b.dataset.time)-mins(a.dataset.time))*t;
+  const time=fmt(Math.floor(m/5)*5), label=(t<.85?a:b).dataset.label;
+  $('#clockTime').textContent=$('#pillTime').textContent=time;
+  $('#clockLabel').textContent=$('#pillLabel').textContent=label;
+  const p=Math.min(1,scrollY/Math.max(1,document.body.scrollHeight-innerHeight));
+  dot.style.top=(-34+68*p)+'vh';
+  sun.style.top=(8+70*p)+'vh';
+  sun.style.background=mix([242,169,59],[255,241,226],Math.max(0,(p-.6)/.4));
+  sun.style.boxShadow=p>.7?'0 0 60px 10px rgba(255,241,226,.25)':'0 0 80px 20px rgba(242,169,59,.45)';
+  $('#stickyCta').classList.toggle('show',scrollY>innerHeight*.8 && $('#contact').getBoundingClientRect().top>innerHeight*.6);
 }
-document.querySelectorAll('.chips input').forEach(i=>i.addEventListener('change',renderMatch));
-renderMatch();
+addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});
+addEventListener('resize',tick); tick();
 
-// contact form (demo: connect to Formspree / Google Forms / email before going live)
-document.getElementById('form').addEventListener('submit',e=>{
-  e.preventDefault();
-  const n=document.getElementById('f-name').value.split(' ')[0];
-  e.target.outerHTML=`<div class="sent">Thank you, ${n.replace(/[<>&"]/g,'')}! ☕ We'll be in touch within two working days.</div>`;
+/* ---------- reveal on scroll ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+$$('.reveal').forEach(el=>reduce?el.classList.add('in'):io.observe(el));
+
+/* ---------- matcher ---------- */
+const ideas={
+  cafe:{audience:['☕×🧴','Café × skincare brand','A "slow Sunday" brunch set with take-home minis from a homegrown skincare label. Their followers find your space; your regulars find them.','Collab Sprint'],
+        buzz:['☕×🎨','Café × local illustrator','A limited-edition cup sleeve and tote drawn by a local illustrator, launched with a live-drawing weekend.','Collab Sprint'],
+        festive:['☕×🧦','Café × apparel label','A festive merch capsule (socks, totes, tees) inspired by your signature bake, sold in-store as gifts.','Collab Sprint']},
+  fashion:{audience:['👕×☕','Label × neighbourhood café','A weekend pop-up rail inside a busy café, with a drink-and-browse discount for anyone who buys.','Warm Intro'],
+        buzz:['👕×🍛','Label × heritage food brand','A playful capsule inspired by an iconic local snack. Nostalgia sells out fast.','Collab Sprint'],
+        festive:['👕×🀄','Label × lifestyle brand','A co-designed Lunar New Year gift set, limited run, with a shared launch event.','Collab Sprint']},
+  beauty:{audience:['🧴×🧘','Skincare × yoga studio','A post-class "glow bar" with your products, plus a sample in every new member\'s welcome kit.','Warm Intro'],
+        buzz:['🧴×🍰','Skincare × café','An afternoon-tea menu designed around your new launch\'s hero ingredients.','Collab Sprint'],
+        festive:['🧴×🍵','Wellness × tea brand','A self-care gift box for the holidays, marketed to both communities.','Collab Sprint']},
+  studio:{audience:['🧘×🥗','Studio × healthy café','Show your class booking for a post-workout bowl discount, and their diners get a free trial class.','Warm Intro'],
+        buzz:['🧘×👟','Studio × activewear label','A launch-week class series where everyone trains in the new collection.','Collab Sprint'],
+        festive:['🧘×🧴','Studio × wellness brand','A "reset for the new year" challenge with a shared prize pack.','Collab Sprint']},
+  startup:{audience:['🚀×🏢','Startup × channel partner','Three vetted distributors or resellers who already sell to your customers, introduced in person.','B2B Intro'],
+        buzz:['🚀×🍽️','Startup × founder supper','Host a Common Table Supper for your launch, with 20 founders who could become your first champions.','Common Table Supper'],
+        festive:['🚀×🎁','Startup × corporate gifting','A pilot with a corporate gifting partner during the year-end rush.','B2B Intro']}
+};
+let current;
+function render(){
+  const w=$('input[name=who]:checked').value, g=$('input[name=goal]:checked').value;
+  current=ideas[w][g];
+  $('#rPair').textContent=current[0]; $('#rTitle').textContent=current[1];
+  $('#rDesc').textContent=current[2]; $('#rPlan').textContent=current[3];
+  const r=$('#result'); r.classList.remove('pop'); void r.offsetWidth; r.classList.add('pop');
+}
+$$('input[name=who],input[name=goal]').forEach(i=>i.addEventListener('change',render)); render();
+
+/* lane cards jump to the matcher with that lane selected */
+$$('.preset').forEach(b=>b.onclick=()=>{
+  $(`input[name=who][value=${b.dataset.preset}]`).checked=true; render();
+  $('#match').scrollIntoView({behavior:reduce?'auto':'smooth'});
 });
-document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* carry choices into the form */
+const planNames={'Warm Intro':'The Warm Intro'};
+function setPlan(name){const s=$('#fPlan');[...s.options].forEach(o=>{if(o.text===(planNames[name]||name))s.value=o.text})}
+$('#bringIdea').onclick=()=>{
+  setPlan(current[3]);
+  $('#fMsg').value=`I liked the "${current[1]}" idea: ${current[2]}`;
+  $('#contact').scrollIntoView({behavior:reduce?'auto':'smooth'});
+  setTimeout(()=>$('#fName').focus({preventScroll:true}),reduce?0:700);
+};
+$$('.plan').forEach(a=>a.addEventListener('click',()=>setPlan(a.dataset.plan)));
+
+/* contact form: demo only. Connect to Formspree / Google Forms / email before going live */
+$('#form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=$('#fName').value.trim().split(' ')[0];
+  const d=document.createElement('div');
+  d.className='bg-paper ink ba bw2 b--fg pa4 hard pop';
+  d.innerHTML='<p class="serif f3 mt0 mb2"></p><p class="mono f6 mv0">We\'ll be in touch within two working days.</p>';
+  d.firstChild.textContent=`Thank you, ${n}! ☕`;
+  e.target.replaceWith(d);
+});
+$('#yr').textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
