@@ -35,3 +35,6 @@ After editing `content.js` or `images/`, you can refresh that built-in copy with
 
 ## Hosting
 Upload the whole `website` folder to Netlify Drop, Vercel or GitHub Pages.
+
+## Photo credits
+Photos in `images/` are from [Unsplash](https://unsplash.com) (free to use under the Unsplash License). Replace them with your own as you go.

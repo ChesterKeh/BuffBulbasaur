@@ -30,13 +30,13 @@ window.CONTENT = {
   hero: {
     kicker: "Partnerships, made warmly · Singapore",
     title: "Common Table",
-    image: "images/hero.svg",     // swap for a big landscape photo (2000px wide is ideal)
+    image: "images/hero.jpg",     // swap for a big landscape photo (2000px wide is ideal)
     scrollHint: "Scroll to explore"
   },
 
   about: {
     label: "Who we are",
-    image: "images/about.svg",    // swap for a photo of you
+    image: "images/about.jpg",    // swap for a photo of you
     text: "We bring the right people to the same table. Common Table matches homegrown brands, cafés and startups, then builds the collab together: the drop, the pop-up, the menu, the launch. For businesses that believe they're better together."
   },
 
@@ -46,19 +46,19 @@ window.CONTENT = {
     intro: "Matchmaking, ideas and the work of making a collab happen, as one service.",
     items: [
       { tab: "Brand × Brand", title: "Collabs, made personal.", beats: "Find your match. Share an audience. Sell out together.",
-        image: "images/work-2.svg", button: "Explore brand collabs",
+        image: "images/sol-brands.jpg", button: "Explore brand collabs",
         details: ["Partner scouting among homegrown labels", "Co-branded drops, capsules and gift sets", "Terms and revenue split agreed up front", "Launch plan, content and PR"],
         price: "From S$3.5k per Collab Sprint" },
       { tab: "Cafés & venues", title: "Spaces, filled.", beats: "New faces. Quiet days busy. Regulars made.",
-        image: "images/work-1.svg", button: "Explore venue partnerships",
+        image: "images/sol-venues.jpg", button: "Explore venue partnerships",
         details: ["Brand pop-ups and takeovers", "Menu and chef collabs", "Community events and workshops", "Ongoing partner calendar"],
         price: "From S$800 for a Warm Intro" },
       { tab: "Startups & B2B", title: "Doors, opened.", beats: "Right people. Warm intros. Deals moving.",
-        image: "images/work-3.svg", button: "Explore B2B intros",
+        image: "images/sol-startups.jpg", button: "Explore B2B intros",
         details: ["Distributors and channel partners", "Suppliers and manufacturers", "Corporate pilots", "Success-based pricing"],
         price: "S$500 + 8% success fee" },
       { tab: "Community", title: "Tables, shared.", beats: "Good food. Good people. Next collab.",
-        image: "images/supper.svg", button: "Explore our suppers",
+        image: "images/sol-community.jpg", button: "Explore our suppers",
         details: ["Monthly founder suppers", "Hosted at partner venues", "Curated guest list of 12–20", "No pitching, ever"],
         price: "About S$60 per seat" }
     ]
@@ -70,21 +70,23 @@ window.CONTENT = {
   },
 
   work: {
-    label: "Selected collabs",
+    // EDIT ME: these are IDEAS, not past work. When you complete real collabs,
+    // replace them (story + result) and change the label to "Selected collabs".
+    label: "Collabs we'd love to make",
     more: "Start yours",
     items: [
-      { title: "Slow Sunday Brunch", tags: "Café × Skincare", image: "images/work-1.svg",
-        story: "A neighbourhood brunch spot and a homegrown skincare label shared the same Sunday-morning crowd. We built a brunch set with take-home minis.",
-        result: "Add the result here, e.g. sold out two weekends." },
-      { title: "The Snack Sock Drop", tags: "Apparel × Heritage snack", image: "images/work-2.svg",
-        story: "A playful apparel label and a nostalgic snack brand teamed up on a limited National Day capsule.",
-        result: "Add the result here." },
-      { title: "Reset January", tags: "Studio × Healthy café", image: "images/work-3.svg",
-        story: "A yoga studio and the salad bar downstairs ran a four-week challenge with shared rewards for members and diners.",
-        result: "Add the result here." },
-      { title: "Founders’ Long Table", tags: "Supper series", image: "images/work-4.svg",
-        story: "Twenty founders around one table turned a quiet weeknight into a full house for our host venue.",
-        result: "Add the result here." }
+      { title: "Slow Sunday Brunch", tags: "Café × Skincare", image: "images/work-1.jpg",
+        story: "A neighbourhood brunch spot and a homegrown skincare label share the same Sunday-morning crowd. The idea: a brunch set that comes with take-home minis.",
+        result: "Open for the right café and skincare label. Could this be you?" },
+      { title: "The Snack Tee Drop", tags: "Apparel × Heritage snack", image: "images/work-2.jpg",
+        story: "A playful apparel label and a nostalgic local snack brand launch a limited capsule for National Day.",
+        result: "Open for an apparel label and a snack brand with a story." },
+      { title: "Reset January", tags: "Studio × Healthy café", image: "images/work-3.jpg",
+        story: "A yoga studio and the salad bar downstairs run a four-week challenge with shared rewards for members and diners.",
+        result: "Open for a studio and a café on the same street." },
+      { title: "Founders’ Long Table", tags: "Supper series", image: "images/work-4.jpg",
+        story: "Twenty founders around one table turn a quiet weeknight into a full house for the host venue.",
+        result: "Looking for our first host venue." }
     ]
   },
 
@@ -133,7 +135,7 @@ window.CONTENT = {
   },
 
   suppers: {
-    image: "images/supper.svg",   // swap for a photo of a dinner table
+    image: "images/supper.jpg",   // swap for a photo of a dinner table
     label: "Common Table Suppers",
     title: "Once a month, we pull up chairs.",
     text: "12–20 founders, makers and brand owners around one long table. No pitching, no name tags. Plenty of collabs start over dessert.",
